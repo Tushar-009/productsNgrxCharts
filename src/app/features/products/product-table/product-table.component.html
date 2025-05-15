@@ -1,0 +1,31 @@
+
+<div *ngIf="products().length > 0" class="table-container">
+  <h2>Product List</h2>
+  <table class="product-table">
+    <thead>
+      <tr>
+           <th>Actions</th>
+        <th>Name</th>
+        <th>Price (₹)</th>
+        <th>Status</th>
+     
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products()">
+         <td>
+          <button (click)="edit(product)">Edit</button>
+          <button (click)="delete(product.id)">Delete</button>
+        </td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.price | currency:'INR' }}</td>
+        <td>
+          <span class="status" [ngClass]="product.status | lowercase">
+            {{ product.status }}
+          </span>
+        </td>
+       
+      </tr>
+    </tbody>
+  </table>
+</div>

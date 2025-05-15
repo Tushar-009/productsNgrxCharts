@@ -1,0 +1,45 @@
+<div class="product-form-container">
+  <h2>Product Management</h2>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+    <div class="form-card"> 
+         <div class="form-group">
+        <label for="id">ID</label>
+        <input id="id" formControlName="id" type="text" />
+        <span class="error" *ngIf="form.get('id')?.touched && form.get('id')?.invalid">
+          <span *ngIf="form.get('id')?.errors?.['required']">Product id is required.</span>
+        </span>
+      </div> 
+      <div class="form-group">
+        <label for="name">Product Name</label>
+        <input id="name" formControlName="name" type="text" />
+        <span class="error" *ngIf="form.get('name')?.touched && form.get('name')?.invalid">
+          <span *ngIf="form.get('name')?.errors?.['required']">Product name is required.</span>
+          <span *ngIf="form.get('name')?.errors?.['pattern']">Only letters and spaces allowed.</span>
+        </span>
+      </div> 
+      <div class="form-group">
+        <label for="price">Price (₹)</label>
+        <input id="price" formControlName="price" type="number" />
+        <span class="error" *ngIf="form.get('price')?.touched && form.get('price')?.invalid">
+          <span *ngIf="form.get('price')?.errors?.['required']">Price is required.</span>
+          <span *ngIf="form.get('price')?.errors?.['min']">Enter a valid price.</span>
+        </span>
+      </div> 
+      <div class="form-group">
+        <label>Status</label>
+        <div class="status-options">
+          <label><input type="radio" formControlName="status" value="Pending" /> Pending</label>
+          <label><input type="radio" formControlName="status" value="Out of Stock" /> Out of Stock</label>
+          <label><input type="radio" formControlName="status" value="In Stock" /> In Stock</label>
+        </div>
+        <span class="error" *ngIf="form.get('status')?.touched && form.get('status')?.invalid">
+          Please select a status.
+        </span>
+      </div> 
+      <div class="form-actions">
+        <button type="submit" [disabled]="form.invalid">Save Product</button>
+      </div>
+    </div>
+  </form>
+</div>

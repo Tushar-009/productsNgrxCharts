@@ -1,0 +1,14 @@
+<div class="charts-container">
+  <div class="chart-card" *ngIf="statusChart">
+    <h3>Status Distribution</h3>
+    <canvas style="    height: 300px;
+    width: 300px;
+    margin-left: 20%;
+" baseChart [data]="statusChart" [type]="pieChartType"></canvas>
+  </div>
+
+  <div class="chart-card" *ngIf="trendChart">
+    <h3>Trends Over Time</h3>
+    <canvas baseChart [data]="trendChart" [type]="lineChartType"></canvas>
+  </div>
+</div>
